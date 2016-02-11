@@ -1,2 +1,14 @@
-var Carousel=window.Carousel||{};Carousel=function(){"use strict";var t={widthItem:180,itemPerPage:1,interval:200,itemView:4},e={init:function(){this.lists=document.querySelector(".see-more .products-list"),this.btnPrev=document.querySelector(".control-prev"),this.btnNext=document.querySelector(".control-next"),this.itensCount=parseInt(this.lists.children.length,10),this.carouselWidth=this.itensCount*t.widthItem,this.events(),this.lists.style.width=this.carouselWidth+"px"},events:function(){this.btnPrev.addEventListener("click",_.debounce(this.prevItem.bind(this),t.interval)),this.btnNext.addEventListener("click",_.debounce(this.nextItem.bind(this),t.interval))},prevItem:function(t){var e=this.directionControl("prev");return e>0?void(this.lists.style.marginLeft="0px"):(this.lists.style.marginLeft=e+"px",t.preventDefault(),void t.stopPropagation())},nextItem:function(e){var i=this.directionControl("next"),n=-1*(this.carouselWidth-t.itemView*t.widthItem);return n>i?void(this.lists.style.marginLeft=n+"px"):(this.lists.style.marginLeft=i+"px",e.preventDefault(),void e.stopPropagation())},getWrapperMarginLeft:function(){var t=this.getCurrentStyle();return parseInt(t.marginLeft,10)},getCurrentStyle:function(){return this.lists.currentStyle||window.getComputedStyle(this.lists)},directionControl:function(t){return"next"===t?this.getWrapperMarginLeft()-this.totalItems():this.getWrapperMarginLeft()+this.totalItems()},totalItems:function(){return t.itemPerPage*t.widthItem}};return e}();
-var WidgetChaordicOnSite=window.WidgetChaordicOnSite||{};WidgetChaordicOnSite=function(){"use strict";var t={template:"#product-list-template"},e={$:function(t){return document.querySelector(t)},ajax:function(){return new XMLHttpRequest},template:function(t){return Handlebars.compile(t,{noEscape:!0})},truncate:function(t,e,n){if(t.length>e){var i=n?n:"...";return t.slice(0,e-i.length)+i}return t}},n={init:function(n){this.options=_.extend(t,n),this.template=e.template(e.$(this.options.template).innerHTML),this.viewReference(this.getData("reference")),this.viewRecommendation(this.getData("recommendation")),Carousel.init()},viewReference:function(t){var e=this.parseData(t);this.setContent(".viewed .products-list",e)},viewRecommendation:function(t){var e=this.parseData(t);this.setContent(".see-more .products-list",e)},setContent:function(t,n){e.$(t).innerHTML=this.template({data:n})},parseData:function(t){var e=[];return _.isArray(t)?_.each(t,function(t){e.push(this.setObjs(t))}.bind(this)):e.push(this.setObjs(t.item)),e},getData:function(t){return this.options.json.data[t]},setObjs:function(t){return{id:t.businessId,thumbnail:t.imageName,title:t.name,titleTruncate:e.truncate(t.name,80,"..."),price:t.price,oldPrice:null===typeof t.oldPrice?"":t.oldPrice,installments:t.productInfo.paymentConditions,url:t.detailUrl}}};return n}();
+var WidgetChaordicOnSite = window.WidgetChaordicOnSite || {};
+
+WidgetChaordicOnSite = (function (window) {
+  'use strict';
+
+  var app = {
+    init: function (options) {
+      console.log('opitions:', options);
+    }
+  };
+
+  return app;
+
+}(window));
