@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Widget Chaordic OnSite"/>
+  <title>Widget Chaordic OnSite</title>
+  <link rel="stylesheet" href="/assets/css/app.css">
+</head>
+<body>
+  <section class="widget">
+    <section class="products-view viewed">
+      <header class="widget-header">
+        <h2 class="widget-header-title">Você visitou:</h2>
+      </header>
+      <ul class="products-list">
+        <span class="product-loading"></span>
+      </ul>
+    </section>
+    <section class="products-view see-more">
+      <header class="widget-header">
+        <h2 class="widget-header-title">e talvez se interesse por:</h2>
+      </header>
+      <div class="carousel">
+        <a href="#prev" class="controls control-prev">Anterior</a>
+        <a href="#prev" class="controls control-next">Anterior</a>
+        <div class="carousel-wrapper">
+          <ul class="products-list">
+            <span class="product-loading"></span>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </section>
+  <script type="text/x-handlebars-template" id="product-list-template">
+    {{#each data}}
+    <li class="product-list-item">
+      <article class="product-info" id="{{id}}">
+        <a href="{{url}}" target="_blank" title="{{title}}">
+          <figure class="product-thumbnail">
+            <img src="{{thumbnail}}" alt="{{title}}">
+          </figure>
+          <p class="product-describe">{{titleTruncate}}</p>
+          <div class="product-prices">
+            {{#if oldPrice}}
+              <span class="product-old-price">De: {{oldPrice}}</span>
+            {{/if}}
+            <span class="product-price-total">Por: <strong>{{price}}</strong></span>
+            <span class="product-price-parcelas">{{installments}}</span>
+          </div>
+        </a>
+      </article>
+    </li>
+    {{/each}}
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+  <script src="/assets/js/app.js"></script>
+  <script type="text/javascript">
+    function X (data) {
+      WidgetChaordicOnSite.init({
+        data: data
+      });
+    }
+  </script>
+  <script src="http://roberval.chaordicsystems.com/challenge/challenge.json?callback=X"></script>
+</body>
+</html>
