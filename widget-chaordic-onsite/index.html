@@ -54,11 +54,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
   <script src="assets/js/app.js"></script>
   <script type="text/javascript">
-    function X (data) {
-      window.WidgetChaordicOnSite.init({
-        json: data
-      });
-    }
+    (function () {
+       console.log('entrou');
+    });
+    // function X (data) {
+    //   window.WidgetChaordicOnSite.init({
+    //     json: data
+    //   });
+    // }
   </script>
   <script src="http://roberval.chaordicsystems.com/challenge/challenge.json?callback=X"></script>
 </body>
